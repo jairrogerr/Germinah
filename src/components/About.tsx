@@ -9,7 +9,7 @@ const About: React.FC = () => {
       description: "da água na agricultura é desperdiçada (FAO, 2022)"
     },
     {
-      icon: <Users className="h-6 w-6 text-orange-500" />,
+      icon: <Users className="h-6 w-6 text-red-500" />,
       stat: "33+ milhões",
       description: "de brasileiros com insegurança alimentar (PENSSAN, 2023)"
     }
