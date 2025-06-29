@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Feature Icons */}
-        <div className="flex justify-center space-x-8 mb-12">
+        {/*<div className="flex justify-center space-x-8 mb-12">
           <div className="flex flex-col items-center group">
             <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full group-hover:bg-white/30 transition-all duration-300">
               <Droplets className="h-8 w-8 text-blue-300" />
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             </div>
             <span className="text-sm text-green-100 mt-2">Sustentável</span>
           </div>
-        </div>
+        </div>*/}
 
         {/* CTA Button */}
         <button
