@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Leaf } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   activeSection: string;
@@ -8,6 +9,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +37,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
     }
   };
 
+  const goToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
@@ -53,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
               <button
                 key={item.id}
@@ -69,6 +75,18 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
                 {item.label}
               </button>
             ))}
+            
+            {/* Login Button */}
+            <button
+              onClick={goToLogin}
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                isScrolled 
+                  ? 'bg-green-600 text-white hover:bg-green-700' 
+                  : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
+              }`}
+            >
+              Entrar
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -97,6 +115,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
                   {item.label}
                 </button>
               ))}
+              
+              {/* Mobile Login Button */}
+              <button
+                onClick={goToLogin}
+                className="block w-full text-left px-4 py-3 text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 mx-4 mt-2 rounded-lg"
+              >
+                Entrar
+              </button>
             </nav>
           </div>
         )}

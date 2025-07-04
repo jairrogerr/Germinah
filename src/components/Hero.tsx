@@ -1,12 +1,19 @@
 import React from 'react';
 import { ArrowDown, ArrowRight, Droplets, Cpu, Recycle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   const scrollToAbout = () => {
     const element = document.getElementById('about');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const goToLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -44,36 +51,24 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
-        {/* Feature Icons */}
-        {/*<div className="flex justify-center space-x-8 mb-12">
-          <div className="flex flex-col items-center group">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full group-hover:bg-white/30 transition-all duration-300">
-              <Droplets className="h-8 w-8 text-blue-300" />
-            </div>
-            <span className="text-sm text-green-100 mt-2">Economia de Água</span>
-          </div>
-          <div className="flex flex-col items-center group">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full group-hover:bg-white/30 transition-all duration-300">
-              <Cpu className="h-8 w-8 text-green-300" />
-            </div>
-            <span className="text-sm text-green-100 mt-2">Automação</span>
-          </div>
-          <div className="flex flex-col items-center group">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full group-hover:bg-white/30 transition-all duration-300">
-              <Recycle className="h-8 w-8 text-emerald-300" />
-            </div>
-            <span className="text-sm text-green-100 mt-2">Sustentável</span>
-          </div>
-        </div>*/}
-
-        {/* CTA Button */}
-        <button
-          onClick={scrollToAbout}
-          className="group inline-flex items-center px-8 py-4 bg-white text-green-700 font-semibold rounded-full text-lg transition-all duration-300 hover:bg-green-50 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50"
-        >
-          Acessar o app
-          <ArrowRight className="ml-2 h-5 w-5 group-hover:animate-bounce" />
-        </button>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button
+            onClick={scrollToAbout}
+            className="group inline-flex items-center px-8 py-4 bg-white text-green-700 font-semibold rounded-full text-lg transition-all duration-300 hover:bg-green-50 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50"
+          >
+            Saiba Mais
+            <ArrowDown className="ml-2 h-5 w-5 group-hover:animate-bounce" />
+          </button>
+          
+          <button
+            onClick={goToLogin}
+            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-full text-lg transition-all duration-300 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500/50 border-2 border-white/20"
+          >
+            Acessar o App
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </button>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
