@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Droplets, Cpu, Recycle } from 'lucide-react';
+import { ArrowDown, ArrowRight, Droplets, Cpu, Recycle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToAbout = () => {
