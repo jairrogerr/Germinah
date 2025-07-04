@@ -71,8 +71,8 @@ const Hero: React.FC = () => {
           onClick={scrollToAbout}
           className="group inline-flex items-center px-8 py-4 bg-white text-green-700 font-semibold rounded-full text-lg transition-all duration-300 hover:bg-green-50 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50"
         >
-          Saiba Mais
-          <ArrowDown className="ml-2 h-5 w-5 group-hover:animate-bounce" />
+          Acessar o app
+          <ArrowRight className="ml-2 h-5 w-5 group-hover:animate-bounce" />
         </button>
       </div>
 
