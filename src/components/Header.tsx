@@ -39,6 +39,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
 
   const goToLogin = () => {
     navigate('/login');
+    setIsMenuOpen(false);
   };
 
   return (
@@ -116,13 +117,15 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
                 </button>
               ))}
               
-              {/* Mobile Login Button */}
-              <button
-                onClick={goToLogin}
-                className="block w-full text-left px-4 py-3 text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 mx-4 mt-2 rounded-lg"
-              >
-                Entrar
-              </button>
+              {/* Mobile Login Button - Fixed width */}
+              <div className="px-4 mt-2">
+                <button
+                  onClick={goToLogin}
+                  className="w-full text-center py-3 text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 rounded-lg"
+                >
+                  Entrar
+                </button>
+              </div>
             </nav>
           </div>
         )}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Leaf, Eye, EyeOff, Mail, Lock, User, Check } from 'lucide-react';
+import { Leaf, Eye, EyeOff, Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react';
+import { auth } from '../lib/supabase';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const Register: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,23 +70,78 @@ const Register: React.FC = () => {
     }
 
     setIsLoading(true);
+    setErrors({});
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const { data, error: signUpError } = await auth.signUp(
+        formData.email, 
+        formData.password, 
+        formData.name
+      );
+      
+      if (signUpError) {
+        if (signUpError.message.includes('already registered')) {
+          setErrors({ email: 'Este email já está cadastrado' });
+        } else {
+          setErrors({ general: signUpError.message });
+        }
+        setIsLoading(false);
+        return;
+      }
 
-    // Mock registration success
-    const userData = {
-      name: formData.name,
-      email: formData.email,
-      id: Date.now().toString()
-    };
+      if (data.user) {
+        setSuccess(true);
+        
+        // If user is confirmed immediately, redirect to dashboard
+        if (data.user.email_confirmed_at) {
+          const userData = {
+            id: data.user.id,
+            name: formData.name,
+            email: data.user.email || ''
+          };
+          
+          localStorage.setItem('germinah_user', JSON.stringify(userData));
+          
+          setTimeout(() => {
+            navigate('/painel');
+          }, 2000);
+        } else {
+          // Show success message for email confirmation
+          setTimeout(() => {
+            navigate('/login');
+          }, 3000);
+        }
+      }
+    } catch (err) {
+      setErrors({ general: 'Erro inesperado. Tente novamente.' });
+    }
     
-    localStorage.setItem('germinah_token', 'mock-jwt-token');
-    localStorage.setItem('germinah_user', JSON.stringify(userData));
-    
-    navigate('/painel');
     setIsLoading(false);
   };
+
+  if (success) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
+            <div className="bg-green-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+              <CheckCircle className="h-8 w-8 text-green-600" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Conta criada com sucesso!</h1>
+            <p className="text-gray-600 mb-6">
+              Verifique seu email para confirmar sua conta e fazer login.
+            </p>
+            <Link
+              to="/login"
+              className="inline-block bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300"
+            >
+              Ir para Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4">
@@ -103,6 +160,13 @@ const Register: React.FC = () => {
 
         {/* Registration Form */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
+          {errors.general && (
+            <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+              <AlertCircle className="h-5 w-5 text-red-600 mr-3" />
+              <span className="text-red-800 text-sm">{errors.general}</span>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">

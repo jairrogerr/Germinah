@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Leaf, Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { Leaf, Eye, EyeOff, Mail, Lock, AlertCircle } from 'lucide-react';
+import { auth } from '../lib/supabase';
 
 interface LoginProps {
   setIsAuthenticated: (value: boolean) => void;
@@ -9,41 +10,65 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    rememberMe: false
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
+    
+    // Clear error when user starts typing
+    if (error) {
+      setError('');
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Mock authentication
-    if (formData.email && formData.password) {
-      const userData = {
-        name: 'Maria Silva',
-        email: formData.email,
-        id: '1'
-      };
+    try {
+      const { data, error: signInError } = await auth.signIn(formData.email, formData.password);
       
-      localStorage.setItem('germinah_token', 'mock-jwt-token');
-      localStorage.setItem('germinah_user', JSON.stringify(userData));
-      setIsAuthenticated(true);
-      navigate('/painel');
-    }
+      if (signInError) {
+        setError(signInError.message);
+        setIsLoading(false);
+        return;
+      }
 
+      if (data.user) {
+        const userData = {
+          id: data.user.id,
+          name: data.user.user_metadata?.name || data.user.email?.split('@')[0] || 'Usuário',
+          email: data.user.email || ''
+        };
+        
+        // Store user data
+        localStorage.setItem('germinah_user', JSON.stringify(userData));
+        
+        // Store remember me preference
+        if (formData.rememberMe) {
+          localStorage.setItem('germinah_remember', 'true');
+        } else {
+          localStorage.removeItem('germinah_remember');
+        }
+        
+        setIsAuthenticated(true);
+        navigate('/painel');
+      }
+    } catch (err) {
+      setError('Erro inesperado. Tente novamente.');
+    }
+    
     setIsLoading(false);
   };
 
@@ -64,6 +89,13 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
 
         {/* Login Form */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
+          {error && (
+            <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+              <AlertCircle className="h-5 w-5 text-red-600 mr-3" />
+              <span className="text-red-800 text-sm">{error}</span>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -121,12 +153,14 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
-                  id="remember-me"
-                  name="remember-me"
+                  id="rememberMe"
+                  name="rememberMe"
                   type="checkbox"
+                  checked={formData.rememberMe}
+                  onChange={handleInputChange}
                   className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-700">
                   Lembrar de mim
                 </label>
               </div>
@@ -165,13 +199,6 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
               </Link>
             </p>
           </div>
-        </div>
-
-        {/* Demo Credentials */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-800 text-center">
-            <strong>Demo:</strong> Use qualquer email e senha para testar a plataforma
-          </p>
         </div>
       </div>
     </div>
