@@ -21,15 +21,58 @@ import Account from './pages/Account';
 import Help from './pages/Help';
 import AppLayout from './components/AppLayout';
 
+// Supabase
+import { auth } from './lib/supabase';
+
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentPath, setCurrentPath] = useState('/');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('germinah_token');
-    setIsAuthenticated(!!token);
+    // Check authentication status on app load
+    const checkAuth = async () => {
+      try {
+        const { user } = await auth.getCurrentUser();
+        if (user) {
+          const userData = {
+            id: user.id,
+            name: user.user_metadata?.name || user.email?.split('@')[0] || 'Usuário',
+            email: user.email || ''
+          };
+          localStorage.setItem('germinah_user', JSON.stringify(userData));
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error('Error checking auth:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
+
+    // Listen for auth state changes
+    const { data: { subscription } } = auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session?.user) {
+        const userData = {
+          id: session.user.id,
+          name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || 'Usuário',
+          email: session.user.email || ''
+        };
+        localStorage.setItem('germinah_user', JSON.stringify(userData));
+        setIsAuthenticated(true);
+      } else if (event === 'SIGNED_OUT') {
+        localStorage.removeItem('germinah_user');
+        localStorage.removeItem('germinah_settings');
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => {
+      subscription?.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -71,6 +114,17 @@ function App() {
       <Footer />
     </div>
   );
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Router>

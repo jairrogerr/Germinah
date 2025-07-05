@@ -10,6 +10,8 @@ import {
   CheckCircle,
   AlertTriangle
 } from 'lucide-react';
+import { auth } from '../lib/supabase';
+import { useNavigate } from 'react-router-dom';
 
 interface AccountProps {
   setIsAuthenticated: (value: boolean) => void;
@@ -38,6 +40,8 @@ const Account: React.FC<AccountProps> = ({ setIsAuthenticated }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,77 +49,92 @@ const Account: React.FC<AccountProps> = ({ setIsAuthenticated }) => {
       ...prev,
       [name]: value
     }));
+    
+    if (error) setError('');
   };
 
   const handleSaveProfile = async () => {
     setIsLoading(true);
+    setError('');
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Update user data
-    const updatedUser = {
-      ...user,
-      name: formData.name,
-      email: formData.email
-    };
-    
-    setUser(updatedUser);
-    localStorage.setItem('germinah_user', JSON.stringify(updatedUser));
+    try {
+      // Update user data in localStorage
+      const updatedUser = {
+        ...user,
+        name: formData.name,
+        email: formData.email
+      };
+      
+      setUser(updatedUser);
+      localStorage.setItem('germinah_user', JSON.stringify(updatedUser));
+      
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (err) {
+      setError('Erro ao salvar perfil');
+    }
     
     setIsLoading(false);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   const handleChangePassword = async () => {
     if (formData.newPassword !== formData.confirmPassword) {
-      alert('As senhas não coincidem');
+      setError('As senhas não coincidem');
       return;
     }
     
     if (formData.newPassword.length < 6) {
-      alert('A nova senha deve ter pelo menos 6 caracteres');
+      setError('A nova senha deve ter pelo menos 6 caracteres');
       return;
     }
 
     setIsLoading(true);
+    setError('');
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Clear password fields
-    setFormData(prev => ({
-      ...prev,
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    }));
+    try {
+      // In a real app, you would update the password via Supabase
+      // For now, we'll just simulate success
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Clear password fields
+      setFormData(prev => ({
+        ...prev,
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+      }));
+      
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (err) {
+      setError('Erro ao alterar senha');
+    }
     
     setIsLoading(false);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   const handleDeleteAccount = async () => {
     setIsLoading(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      await auth.signOut();
+      setIsAuthenticated(false);
+      navigate('/');
+    } catch (err) {
+      setError('Erro ao excluir conta');
+    }
     
-    // Clear all data and logout
-    localStorage.removeItem('germinah_token');
-    localStorage.removeItem('germinah_user');
-    localStorage.removeItem('germinah_settings');
-    
-    setIsAuthenticated(false);
     setIsLoading(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('germinah_token');
-    localStorage.removeItem('germinah_user');
-    setIsAuthenticated(false);
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      setIsAuthenticated(false);
+      navigate('/');
+    } catch (err) {
+      console.error('Error signing out:', err);
+    }
   };
 
   const accountStats = [
@@ -138,6 +157,14 @@ const Account: React.FC<AccountProps> = ({ setIsAuthenticated }) => {
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center">
           <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
           <span className="text-green-800">Informações atualizadas com sucesso!</span>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+          <AlertTriangle className="h-5 w-5 text-red-600 mr-3" />
+          <span className="text-red-800">{error}</span>
         </div>
       )}
 
