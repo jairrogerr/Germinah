@@ -33,7 +33,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem('germinah_token');
     localStorage.removeItem('germinah_user');
-    navigate('/login');
+    navigate('/');
     window.location.reload();
   };
 
