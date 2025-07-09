@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '../lib/supabase';
 import { 
   Leaf, 
   LayoutDashboard, 
@@ -31,10 +32,17 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem('germinah_token');
-    localStorage.removeItem('germinah_user');
-    navigate('/');
-    window.location.reload();
+    auth.signOut().then(() => {
+      localStorage.removeItem('germinah_user');
+      localStorage.removeItem('germinah_settings');
+      navigate('/');
+    }).catch((error) => {
+      console.error('Error signing out:', error);
+      // Fallback: clear localStorage anyway
+      localStorage.removeItem('germinah_user');
+      localStorage.removeItem('germinah_settings');
+      navigate('/');
+    });
   };
 
   const user = JSON.parse(localStorage.getItem('germinah_user') || '{"name": "Usuário"}');

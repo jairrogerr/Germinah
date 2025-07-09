@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
+import PWAUpdatePrompt from './components/PWAUpdatePrompt';
 import Hero from './components/Hero';
 import About from './components/About';
 import HowItWorks from './components/HowItWorks';
@@ -128,6 +130,7 @@ function App() {
 
   return (
     <Router>
+      <PWAUpdatePrompt />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
@@ -180,6 +183,7 @@ function App() {
           )
         } />
       </Routes>
+      <PWAInstallPrompt />
     </Router>
   );
 }
