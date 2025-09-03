@@ -80,7 +80,7 @@ function App() {
   useEffect(() => {
     if (currentPath === '/') {
       const handleScroll = () => {
-        const sections = ['home', 'about', 'how-it-works', 'app', 'impact', 'target', 'results'/*, 'contact'*/];
+        const sections = ['home', 'about', 'how-it-works', 'app', 'impact', 'target', 'results', 'contact'];
         const scrollPosition = window.scrollY + 100;
 
         for (const section of sections) {
