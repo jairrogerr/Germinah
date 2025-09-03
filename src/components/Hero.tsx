@@ -33,20 +33,20 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            <span className="block">Germinah:</span>
+            <span className="block">🌱 Germinah:</span>
             <span className="block bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">
-              Plantando o Futuro
+              Revolucionando a Agricultura
             </span>
             <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
-              com Inovação
+              Urbana Sustentável
             </span>
           </h1>
           
           <p className="text-lg sm:text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed">
-            Automação, sustentabilidade e educação ambiental em um só projeto.
+            <span className="font-semibold text-white">Transforme qualquer espaço em uma horta inteligente!</span>
             <br />
-            <span className="text-green-200 font-medium">
-              Sistema de irrigação vertical inteligente e acessível.
+            <span className="text-green-200">
+              Economize 70% de água, cultive alimentos orgânicos e contribua para um planeta mais verde.
             </span>
           </p>
         </div>
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             onClick={scrollToAbout}
             className="group inline-flex items-center px-8 py-4 bg-white text-green-700 font-semibold rounded-full text-lg transition-all duration-300 hover:bg-green-50 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50"
           >
-            Saiba Mais
+            Descubra Como Funciona
             <ArrowDown className="ml-2 h-5 w-5 group-hover:animate-bounce" />
           </button>
           
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
             onClick={goToLogin}
             className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-full text-lg transition-all duration-300 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500/50 border-2 border-white/20"
           >
-            Acessar o App
+            🚀 Começar Agora - É Grátis!
             <ArrowRight className="ml-2 h-5 w-5" />
           </button>
         </div>

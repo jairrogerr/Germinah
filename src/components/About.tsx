@@ -27,12 +27,13 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Sobre o Projeto Germinah
+            A Revolução Verde Chegou! 🌿
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-emerald-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Um sistema de irrigação vertical automatizado e de baixo custo, desenvolvido com materiais 
-            recicláveis, sensores de umidade e microcontrolador Arduino.
+            <span className="font-semibold text-gray-800">Imagine cultivar seus próprios alimentos orgânicos</span> sem se preocupar com rega, 
+            economizando água e contribuindo para um futuro sustentável. O Germinah torna isso realidade com 
+            <span className="text-green-600 font-medium"> tecnologia inteligente e materiais recicláveis</span>.
           </p>
         </div>
 
@@ -43,25 +44,25 @@ const About: React.FC = () => {
                 <div className="bg-green-100 p-3 rounded-full mr-4">
                   <Target className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Como Funciona</h3>
+                <h3 className="text-2xl font-bold text-gray-900">🤖 Inteligência que Cuida</h3>
               </div>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                O Germinah utiliza sensores de umidade para monitorar o solo em tempo real, 
-                ativando automaticamente a irrigação apenas quando necessário. Isso garante 
-                o uso racional da água e facilita o cultivo doméstico.
+                <span className="font-semibold text-gray-800">Nunca mais suas plantas morrerão por falta ou excesso de água!</span> 
+                Nossos sensores inteligentes monitoram o solo 24/7, irrigando automaticamente apenas quando necessário. 
+                É como ter um jardineiro especialista cuidando das suas plantas o tempo todo.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-700">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  Irrigação baseada na umidade real do solo
+                  ✨ Irrigação inteligente baseada em dados reais
                 </li>
                 <li className="flex items-center text-gray-700">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  Materiais recicláveis como garrafas PET
+                  ♻️ 100% sustentável com materiais reciclados
                 </li>
                 <li className="flex items-center text-gray-700">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  Tecnologia Arduino acessível e eficiente
+                  💡 Tecnologia acessível que qualquer um pode usar
                 </li>
               </ul>
             </div>
@@ -70,7 +71,7 @@ const About: React.FC = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Problemas que Enfrentamos</h3>
             {problems.map((problem, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-400">
+              <div key={index} className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-400 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start">
                   <div className="mr-4 mt-1">{problem.icon}</div>
                   <div>
@@ -84,7 +85,7 @@ const About: React.FC = () => {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Aplicações do Sistema</h3>
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">🎯 Onde Você Pode Usar</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {applications.map((app, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">

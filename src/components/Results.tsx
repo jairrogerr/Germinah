@@ -92,12 +92,13 @@ const Results: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Resultados Alcançados
+            📊 Resultados Que Inspiram!
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-purple-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Nosso protótipo demonstrou resultados promissores, validando a eficácia 
-            e viabilidade do sistema Germinah em condições reais de uso.
+            <span className="font-semibold text-gray-800">Os números falam por si!</span> 
+            Cada teste realizado confirma que o Germinah não é apenas uma ideia - é uma solução real, 
+            testada e pronta para transformar a forma como cultivamos alimentos.
           </p>
         </div>
 
@@ -118,7 +119,7 @@ const Results: React.FC = () => {
 
         {/* Achievements */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Principais Conquistas</h3>
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">🏆 Marcos de Uma Jornada Vitoriosa</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {achievements.map((achievement, index) => (
               <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300">

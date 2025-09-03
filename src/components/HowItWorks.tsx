@@ -57,11 +57,12 @@ const HowItWorks: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Como Funciona o Sistema
+            🔬 A Ciência Por Trás da Magia
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Um processo inteligente e automatizado que combina sustentabilidade com tecnologia acessível
+            <span className="font-semibold text-gray-800">Descubra como transformamos ciência em solução prática!</span> 
+            Cada componente foi pensado para maximizar eficiência e minimizar desperdício.
           </p>
         </div>
 
@@ -89,7 +90,7 @@ const HowItWorks: React.FC = () => {
 
         {/* System Diagram */}
         <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12 mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Diagrama do Sistema</h3>
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">⚡ Sistema Integrado</h3>
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <div className="grid md:grid-cols-3 gap-8 items-center">
@@ -98,21 +99,21 @@ const HowItWorks: React.FC = () => {
                     <span className="text-3xl">🥤</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">Garrafas PET</h4>
-                  <p className="text-sm text-gray-600">Vasos sustentáveis dispostos verticalmente</p>
+                  <p className="text-sm text-gray-600">Transformando lixo em vida! 🌱</p>
                 </div>
                 <div className="text-center">
                   <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-3xl">⚡</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">Arduino + Sensores</h4>
-                  <p className="text-sm text-gray-600">Controle inteligente da irrigação</p>
+                  <p className="text-sm text-gray-600">Cérebro que nunca dorme! 🧠</p>
                 </div>
                 <div className="text-center">
                   <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-3xl">💧</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">Sistema de Irrigação</h4>
-                  <p className="text-sm text-gray-600">Distribuição por gravidade e reuso</p>
+                  <p className="text-sm text-gray-600">Precisão milimétrica! 💧</p>
                 </div>
               </div>
             </div>
@@ -121,7 +122,7 @@ const HowItWorks: React.FC = () => {
 
         {/* Highlights */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">Principais Benefícios</h3>
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">🏆 Por Que Escolher o Germinah?</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((highlight, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">

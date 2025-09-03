@@ -50,12 +50,12 @@ const Impact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Impacto Social e Ambiental
+            🌍 Juntos Mudando o Mundo
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Alinhado com os Objetivos de Desenvolvimento Sustentável da ONU, 
-            o Germinah promove transformação social e ambiental.
+            <span className="font-semibold text-gray-800">Cada sistema Germinah instalado é um passo em direção a um futuro mais sustentável!</span> 
+            Nosso impacto vai além da tecnologia - estamos construindo uma comunidade de agentes de mudança.
           </p>
         </div>
 
@@ -72,7 +72,7 @@ const Impact: React.FC = () => {
         {/* UN SDGs */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Objetivos de Desenvolvimento Sustentável (ODS)
+            🎯 Alinhados com os ODS da ONU
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sdgs.map((sdg, index) => (
@@ -91,7 +91,7 @@ const Impact: React.FC = () => {
 
         {/* Benefits Grid */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">Principais Benefícios</h3>
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">💎 Benefícios Que Transformam Vidas</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">

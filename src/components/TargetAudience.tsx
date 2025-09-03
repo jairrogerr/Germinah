@@ -61,12 +61,13 @@ const TargetAudience: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Público-Alvo
+            👥 Para Quem Sonha com um Futuro Verde
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-green-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            O Germinah foi desenvolvido para atender diferentes necessidades e contextos, 
-            desde cultivo doméstico até projetos educacionais e sociais.
+            <span className="font-semibold text-gray-800">Não importa onde você está ou qual é seu objetivo</span> - 
+            o Germinah se adapta às suas necessidades! Seja você um iniciante curioso ou um educador visionário, 
+            temos a solução perfeita para você.
           </p>
         </div>
 
@@ -102,7 +103,7 @@ const TargetAudience: React.FC = () => {
         {/* Use Cases */}
         <div className="bg-white rounded-2xl p-8 shadow-lg">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Casos de Uso Práticos
+            💡 Histórias de Sucesso Reais
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {useCases.map((useCase, index) => (

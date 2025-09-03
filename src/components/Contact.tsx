@@ -79,19 +79,20 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Entre em Contato
+            🤝 Vamos Construir o Futuro Juntos!
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Tem interesse no projeto Germinah? Quer implementar em sua escola ou comunidade? 
-            Entre em contato conosco!
+            <span className="font-semibold text-gray-800">Pronto para fazer parte da revolução verde?</span> 
+            Seja para implementar em sua casa, escola ou comunidade, estamos aqui para tornar seu sonho realidade. 
+            <span className="text-green-600 font-medium">Vamos plantar sementes de mudança juntos!</span>
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Envie sua Mensagem</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">💌 Conte-nos Seu Sonho Verde</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
@@ -157,10 +158,11 @@ const Contact: React.FC = () => {
                     <option value="general">Informações Gerais</option>
                     <option value="school">Projeto Escolar</option>
                     <option value="community">Projeto Comunitário</option>
-                    <option value="partnership">Parceria</option>
+            <h3 className="text-2xl font-bold mb-4">🚀 O Futuro Está Chegando!</h3>
                     <option value="media">Imprensa</option>
-                  </select>
-                </div>
+              <span className="font-semibold text-white">A revolução verde já começou!</span> 
+              Com resultados comprovados, estamos expandindo rapidamente para levar esperança, 
+              sustentabilidade e autonomia alimentar para cada canto do Brasil.
               </div>
 
               <div>
@@ -175,7 +177,7 @@ const Contact: React.FC = () => {
                   required
                   rows={5}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
-                  placeholder="Conte-nos mais sobre seu interesse no projeto Germinah..."
+                  placeholder="Compartilhe sua visão! Como o Germinah pode transformar sua realidade? Queremos ouvir sua história..."
                 ></textarea>
               </div>
 

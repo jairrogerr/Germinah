@@ -39,12 +39,12 @@ const EducationalApp: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Aplicativo Educativo
+            📱 Seu Jardim na Palma da Mão
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Uma ferramenta completa que simula o funcionamento do sistema em tempo real, 
-            oferecendo dados intuitivos e educação ambiental interativa.
+            <span className="font-semibold text-gray-800">Controle total do seu sistema, onde quer que esteja!</span> 
+            Monitore, aprenda e otimize seu cultivo com dados em tempo real e insights inteligentes.
           </p>
         </div>
 
@@ -102,7 +102,7 @@ const EducationalApp: React.FC = () => {
 
           {/* App Features */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Funcionalidades do App</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">🎯 Recursos Que Fazem a Diferença</h3>
             <div className="space-y-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-4">
