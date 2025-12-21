@@ -38,15 +38,17 @@ Além disso, contamos com uma **interface web/app educativo** onde os usuários 
 
 > [Germinah.netlify.app](https://germinah.netlify.app)
 
-<!-- ## 📸 Imagens do Projeto
+## 📸 Imagens do Projeto
 
-### Protótipo físico
+<!--### Protótipo físico
 
-*(adicione aqui imagens reais ou mockups do sistema montado)*
+*(adicione aqui imagens reais ou mockups do sistema montado)*-->
 
 ### Interface do app
 
-![Tela do app](docs/mockup-app.png)-->
+![Tela inicial](docs/screenshot1.png)
+![Painel inicial](docs/screenshot2.png)
+![Painel minhas plantas](docs/screenshot3.png)
 
 ## 📄 Licença
 
