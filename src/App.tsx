@@ -36,8 +36,8 @@ function App() {
     // Check authentication status on app load
     const checkAuth = async () => {
       try {
-        const { user } = await auth.getCurrentUser();
-        if (user) {
+        const { user, error } = await auth.getCurrentUser();
+        if (user && !error) {
           const userData = {
             id: user.id,
             name: user.user_metadata?.name || user.email?.split('@')[0] || 'Usuário',
@@ -56,7 +56,7 @@ function App() {
     checkAuth();
 
     // Listen for auth state changes
-    const { data: { subscription } } = auth.onAuthStateChange((event, session) => {
+    const unsubscribe = auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user) {
         const userData = {
           id: session.user.id,
@@ -70,10 +70,10 @@ function App() {
         localStorage.removeItem('germinah_settings');
         setIsAuthenticated(false);
       }
-    });
+    }).data?.subscription;
 
     return () => {
-      subscription?.unsubscribe();
+      unsubscribe?.unsubscribe();
     };
   }, []);
 
