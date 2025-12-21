@@ -36,7 +36,7 @@ Além disso, contamos com uma **interface web/app educativo** onde os usuários 
 
 ## 🌐 Link do Website
 
-> [Germinah.vercel.app](https://germinah.vercel.app)
+> [Germinah.netlify.app](https://germinah.netlify.app)
 
 <!-- ## 📸 Imagens do Projeto
 
@@ -58,8 +58,8 @@ Quer contribuir com o Germinah? Sinta-se à vontade para abrir issues, forks ou 
 
 ## ✉️ Contato
 
-* E-mail: [jairrogerpereiradsilva@gmail.com](mailto:jairrogerpereiradsilva@gmail.com)
+* E-mail: [jairrogersilva@gmail.com](mailto:jairrogersilva@gmail.com)
 <!--* Instagram: [@germinah_oficial](https://instagram.com/germinah_oficial)-->
-* Website: [https://germinah.vercel.app](https://germinah.vercel.app)
+* Website: [https://germinah.netlify.app](https://germinah.netlify.app)
 
 > *“Enquanto houver água e terra, há um futuro a ser cultivado.”* 🌿
